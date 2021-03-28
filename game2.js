@@ -21,6 +21,12 @@ window.addEventListener("load",function(){
      game();
 
 });
+window.addEventListener("click", function(){
+    isPaused = !isPaused;
+        if(isPaused) startpause=new Date();
+        else pausedtime+=new Date()- startpause;
+        showPaused();
+});
 
 window.addEventListener("keydown", function (evt) {
     if (evt.key === " ") {
