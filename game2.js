@@ -12,6 +12,8 @@ let interval;
 let lives=3;
 let starttime=new Date();
 let timer;
+let startpause;
+let pausedtime=0;
 let maxtime=120000;//120s==2 mins
 // Loading the browser window.
 window.addEventListener("load",function(){
@@ -24,6 +26,8 @@ window.addEventListener("keydown", function (evt) {
     if (evt.key === " ") {
         evt.preventDefault();
         isPaused = !isPaused;
+        if(isPaused) startpause=new Date();
+        else pausedtime+=new Date()- startpause;
         showPaused();
     }
     else if (evt.key === "ArrowUp" && !(snake.velx==0 && snake.vely==1)) {
@@ -271,7 +275,7 @@ function update()
 {
 
         // Checking if game is paused.
-    timer=new Date() - starttime;
+    timer=new Date() - starttime-pausedtime;
     if (isPaused) {
         return;
     }
